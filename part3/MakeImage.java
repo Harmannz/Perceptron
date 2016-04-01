@@ -1,4 +1,3 @@
-package main;
 /* Code for COMP 307 Assignment 
  * Name:
  * Usercode:
