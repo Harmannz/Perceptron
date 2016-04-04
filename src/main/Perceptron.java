@@ -26,6 +26,7 @@ public class Perceptron {
 
 	private void initialiseWeights(){
 		for(int i = 0; i < weights.length; i++){
+			//enter seed for weights random number
 			weights[i] = new Random().nextDouble()*0.5; //initialise the weights. 0<= x <0.5
 		}
 	}
@@ -97,6 +98,5 @@ public class Perceptron {
 		 }
 	}
 
-	public static void main(String[] args){
-	}
+
 }
