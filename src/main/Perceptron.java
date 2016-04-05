@@ -13,13 +13,14 @@ public class Perceptron {
 	private List<Image> images;
 	private double[] weights;
 	private static final int MAX_ITERATION = 1000;
-	private static final double LEARNING_RATE = 0.2;
+	private static final double LEARNING_RATE = 0.025;
+	private Random random;// = new Random(1);
 
-	public Perceptron(int numOFFeatures, List<Image> images){
-
+	public Perceptron(int numOFFeatures, List<Image> images, Random random){
+		this.random = random;
 		this.numOfFeatures = numOFFeatures;
 		this.images = new ArrayList<Image>(images);
-		this.weights = new double[numOfFeatures];
+		this.weights = new double[numOfFeatures]; //we add one feature weight at end for the dummy feature value
 		initialiseWeights();
 		System.out.println("Weights before: " +  Arrays.toString(weights));
 	}
@@ -27,14 +28,14 @@ public class Perceptron {
 	private void initialiseWeights(){
 		for(int i = 0; i < weights.length; i++){
 			//enter seed for weights random number
-			weights[i] = new Random().nextDouble()*0.5; //initialise the weights. 0<= x <0.5
+			weights[i] = random.nextDouble()*0.5; //initialise the weights. 0<= x <0.5
 		}
 	}
 
 	public void buildPerceptron(){
 		int iteration = 0;
 		int correctGuesses = 0;
-		while(iteration <= MAX_ITERATION){
+		while(iteration < MAX_ITERATION){
 			//present example to classifyInstance
 			boolean allCorrectGuess = true;
 			for (Image image : images){
@@ -61,7 +62,8 @@ public class Perceptron {
 		}
 
 		System.out.println("Algorithm finished");
-		System.out.println("Iterations : " + (iteration >= MAX_ITERATION ? "MAX_ITERATION" : iteration));
+		System.out.printf("Number of feature values: %d, weights: %d\n", numOfFeatures, weights.length);
+		System.out.println("Iterations : " + iteration);
 		System.out.println("Weights after: " +  Arrays.toString(weights));
 		for (Image image : images){
 			boolean result = classifyInstance(image.getFeatureValues());
