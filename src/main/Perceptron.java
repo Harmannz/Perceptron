@@ -63,7 +63,7 @@ public class Perceptron {
 
 		System.out.println("Algorithm finished");
 		System.out.printf("Number of feature values: %d, weights: %d\n", numOfFeatures, weights.length);
-		System.out.println("Iterations : " + iteration);
+
 		System.out.println("Weights after: " +  Arrays.toString(weights));
 		for (Image image : images){
 			boolean result = classifyInstance(image.getFeatureValues());
@@ -72,6 +72,7 @@ public class Perceptron {
 				correctGuesses++;
 			}
 		}
+		System.out.println("Iterations : " + iteration);
 		System.out.printf("Correctly guessed : %d/%d", correctGuesses, images.size() );
 	}
 

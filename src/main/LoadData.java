@@ -16,7 +16,8 @@ public class LoadData {
 	private int cols = 10;
 	private Feature[] features = new Feature[NUM_OF_FEATURES];
 	private List<Image> images = new ArrayList<Image>();
-	private Random random = new Random(1);
+	private Random random = new Random(0);
+	private Random randomNoSeed = new Random();
 
 
 	public void createFeatures(){
@@ -83,5 +84,9 @@ public class LoadData {
 		ld.load();
 		Perceptron p = new Perceptron(NUM_OF_FEATURES, ld.images, ld.random);
 		p.buildPerceptron();
+		System.out.println("\nFeatures:\n");
+		for(int i =0; i < ld.features.length - 1 ;i++){
+			System.out.println(ld.features[i]);
+		}
 	}
 }
